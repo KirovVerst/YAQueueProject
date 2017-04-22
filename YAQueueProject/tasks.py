@@ -1,5 +1,5 @@
 from __future__ import absolute_import, unicode_literals
-from YAQueueProject.celery import app
+from YAQueueProject.celery_app import app
 
 
 @app.task
