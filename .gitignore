@@ -104,3 +104,4 @@ conf.py
 /qproject/celeryconfig.py
 
 *.pid
+/qproject/mailgunconfig.py

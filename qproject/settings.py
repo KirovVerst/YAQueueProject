@@ -118,3 +118,8 @@ try:
     from qproject.celeryconfig import *
 except ImportError:
     from qproject.celeryconfig_example import *
+
+try:
+    from qproject.mailgunconfig import *
+except ImportError:
+    from qproject.mailgunconfig_example import *
