@@ -1,6 +1,6 @@
 broker_url = 'amqp://'
 result_backend = 'rpc://'
-include = ['YAQueueProject.tasks']
+include = ['qproject.tasks']
 task_serializer = 'json'
 result_serializer = 'json'
 accept_content = ['json']

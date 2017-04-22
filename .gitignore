@@ -101,6 +101,6 @@ db.sqlite3
 .idea/
 
 conf.py
-/YAQueueProject/celeryconfig.py
+/qproject/celeryconfig.py
 
 *.pid
