@@ -1,7 +1,7 @@
-broker_url = 'amqp://'
-result_backend = 'rpc://'
-include = ['qproject.tasks']
-task_serializer = 'json'
-result_serializer = 'json'
-accept_content = ['json']
-enable_utc = True
+CELERY_BROKER_URL = 'amqp://'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_ENABLE_UTC = True
+
