@@ -13,7 +13,7 @@ j = 0
 
 @app.task
 def inc(f):
-    if f:
+    if f % 2 == 0:
         global i
         i += 1
         return i
