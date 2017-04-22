@@ -3,5 +3,5 @@ from YAQueueProject.tasks import inc
 
 if __name__ == '__main__':
     for i in range(100):
-        r = inc.apply_async(i % 2)
+        r = inc.delay(i)
         print(r.get())
