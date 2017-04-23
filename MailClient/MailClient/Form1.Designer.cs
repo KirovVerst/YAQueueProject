@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emailForm = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.TextMessageForm = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // emailForm
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 20);
-            this.textBox1.TabIndex = 0;
+            this.emailForm.Location = new System.Drawing.Point(25, 80);
+            this.emailForm.Name = "emailForm";
+            this.emailForm.Size = new System.Drawing.Size(250, 20);
+            this.emailForm.TabIndex = 0;
             // 
             // label1
             // 
@@ -73,13 +73,14 @@
             this.label3.Text = "Введите свой отзыв";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // richTextBox1
+            // TextMessageForm
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(28, 172);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(416, 171);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.TextMessageForm.Location = new System.Drawing.Point(28, 172);
+            this.TextMessageForm.Name = "TextMessageForm";
+            this.TextMessageForm.Size = new System.Drawing.Size(416, 171);
+            this.TextMessageForm.TabIndex = 4;
+            this.TextMessageForm.Text = "";
+            this.TextMessageForm.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button1
             // 
@@ -89,6 +90,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Отправить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -96,11 +98,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(556, 423);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.TextMessageForm);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailForm);
             this.Name = "Form1";
             this.Text = "Отзыв";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -111,11 +113,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emailForm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox TextMessageForm;
         private System.Windows.Forms.Button button1;
     }
 }
