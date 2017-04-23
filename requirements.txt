@@ -8,6 +8,7 @@ Django==1.10.7
 django-rest-swagger==0.3.10
 djangorestframework==3.6.2
 flower==0.9.1
+gunicorn==19.7.1
 kombu==4.0.2
 packaging==16.8
 pyparsing==2.2.0
