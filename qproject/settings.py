@@ -99,8 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 SWAGGER_SETTINGS = {
-    'exclude_url_names': [],
-    'exclude_namespaces': [],
     'api_version': '0.1',
     'api_path': '/api/',
 }
@@ -124,11 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from qproject.celeryconfig import *
+    from qproject.config import *
 except ImportError:
-    from qproject.celeryconfig_example import *
-
-try:
-    from qproject.mailgunconfig import *
-except ImportError:
-    from qproject.mailgunconfig_example import *
+    from qproject.config_example import *
