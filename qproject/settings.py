@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mailgun',
     'rest_framework',
+    'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -96,6 +97,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SWAGGER_SETTINGS = {
+    'exclude_url_names': [],
+    'exclude_namespaces': [],
+    'api_version': '0.1',
+    'api_path': '/api/',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from celery import states
 
 
 class EmailSerializer(serializers.Serializer):
@@ -8,8 +9,10 @@ class EmailSerializer(serializers.Serializer):
     text = serializers.CharField(required=True)
 
 
+states_list = [states.PENDING, states.SUCCESS, states.FAILURE]
+
+
 class TaskSerializer(serializers.Serializer):
     id = serializers.CharField()
-    state = serializers.CharField(required=False)
-    result = serializers.JSONField(allow_null=True, required=False)
-
+    state = serializers.CharField(required=False, help_text=','.join(states_list))
+    result = serializers.JSONField(allow_null=True, required=False, help_text='dictionary object actually: id, message')
