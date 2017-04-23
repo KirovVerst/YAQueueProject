@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from . import views
+from mailgun.views import EmailHandle
 
 urlpatterns = [
-    url(r'^email/$', views.email_handle)
+    url(r'^email/$', EmailHandle.as_view())
 ]

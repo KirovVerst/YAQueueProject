@@ -1,21 +1,20 @@
-from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 from mailgun.tasks import send_simple_message
+from mailgun.serializers import EmailSerializer, TaskSerializer
 
 
-def email_handle(request):
-    if request.method == "POST":
-        data = {
-            'email_from': request.POST['email_from'],
-            'email_to': request.POST['email_to'],
-            'text': request.POST['text'],
-            'subject': request.POST['subject']
-        }
-        r = send_simple_message.delay(**data)
-        return JsonResponse(data=dict(id=r.id))
-    else:
-        task_id = request.GET['task_id']
-        task = send_simple_message.AsyncResult(task_id=task_id)
-        data = dict(ready=task.ready())
-        if data['ready']:
-            data['res'] = task.get()
-        return JsonResponse(data=data)
+class EmailHandle(APIView):
+    def get(self, request, format=None):
+        task_serializer = TaskSerializer(data=request.query_params)
+        task_serializer.is_valid(raise_exception=True)
+        task = send_simple_message.AsyncResult(task_id=task_serializer.data['id'])
+        return Response(TaskSerializer(instance=task).data)
+
+    def post(self, request, format=None):
+        serializer = EmailSerializer(data=request.POST)
+        serializer.is_valid(raise_exception=True)
+        task = send_simple_message.delay(**serializer.data)
+        task_serializer = TaskSerializer(task)
+        return Response(data=task_serializer.data)
