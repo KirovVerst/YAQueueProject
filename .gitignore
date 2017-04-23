@@ -106,3 +106,5 @@ conf.py
 *.pid
 /qproject/mailgunconfig.py
 /qproject/config.py
+
+static
