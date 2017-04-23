@@ -1,4 +1,6 @@
 # QProject
+[![Build Status](https://travis-ci.org/KirovVerst/qproject.svg?branch=master)](https://travis-ci.org/KirovVerst/qproject)
+
 Distributed application based on Celery and RabbitMQ
 
 ## Requirements
