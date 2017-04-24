@@ -34,7 +34,12 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 
   worker:
-    image: kirovverst/gateway
+    image: kirovverst/worker
+    deploy:
+      replicas: 8
+      restart_policy:
+        condition: on-failure
     volumes:
       - .:/qproject
     command: celery worker -A qproject -l info
+
