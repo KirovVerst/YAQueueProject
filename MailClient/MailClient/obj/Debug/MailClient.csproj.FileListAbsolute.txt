@@ -1,0 +1,9 @@
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\bin\Debug\MailClient.exe.config
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\bin\Debug\MailClient.exe
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\bin\Debug\MailClient.pdb
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.csprojResolveAssemblyReference.cache
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.Form1.resources
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.Properties.Resources.resources
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.csproj.GenerateResource.Cache
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.exe
+C:\Users\Alexandr\Source\Repos\qproject\MailClient\MailClient\obj\Debug\MailClient.pdb
