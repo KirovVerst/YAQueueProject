@@ -108,3 +108,5 @@ conf.py
 /qproject/config.py
 
 static
+/MailClient/MailClient/obj/Release
+/MailClient/MailClient/bin/Release
