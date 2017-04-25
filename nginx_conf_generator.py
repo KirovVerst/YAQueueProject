@@ -1,7 +1,7 @@
 import nginx
 
 
-def create_conf(ip_address):
+def create_conf(ip_address, path_to_file):
     c = nginx.Conf()
     c.add(nginx.Comment('django'))
     django_server = nginx.Server()
@@ -45,8 +45,8 @@ def create_conf(ip_address):
                        )
     )
     c.add(visualizer_server)
-    nginx.dumpf(c, 'nginx-conf')
+    nginx.dumpf(c, path_to_file)
 
 
 if __name__ == '__main__':
-    create_conf('127.0.0.1')
+    create_conf('127.0.0.1', 'qproject_nginx')

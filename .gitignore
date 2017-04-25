@@ -108,3 +108,4 @@ conf.py
 /qproject/config.py
 
 static
+qproject_nginx
