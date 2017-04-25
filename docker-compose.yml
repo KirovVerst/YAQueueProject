@@ -10,15 +10,11 @@ services:
   gateway:
     image: kirovverst/gateway
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/qproject
     ports:
       - "8000:8000"
 
   flower:
     image: kirovverst/gateway
-    volumes:
-      - .:/qproject
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -36,10 +32,8 @@ services:
   worker:
     image: kirovverst/worker
     deploy:
-      replicas: 3
+      replicas: 2
       restart_policy:
         condition: on-failure
-    volumes:
-      - .:/qproject
-    command: celery worker -A qproject -l info
+    command: celery worker -A qproject -l info --autoscale=4,1
 
