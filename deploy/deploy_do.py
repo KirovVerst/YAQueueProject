@@ -1,0 +1,3 @@
+import digitalocean
+
+digitalocean.Droplet()
