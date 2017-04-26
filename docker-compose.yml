@@ -6,21 +6,35 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - webnet
 
   gateway:
-    image: kirovverst/gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    networks:
+      - webnet
+    depends_on:
+      - "rabbit"
 
   flower:
-    image: kirovverst/gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
     deploy:
       placement:
         constraints: [node.role == manager]
     command: celery flower -A qproject
     ports:
       - "5555:5555"
+    networks:
+      - webnet
+    depends_on:
+      - "rabbit"
 
   visualizer:
     image: dockersamples/visualizer:stable
@@ -28,6 +42,8 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - webnet
 
   worker:
     image: kirovverst/worker
@@ -36,4 +52,10 @@ services:
       restart_policy:
         condition: on-failure
     command: celery worker -A qproject -l info --autoscale=4,1
+    networks:
+      - webnet
+    depends_on:
+      - "rabbit"
+networks:
+  webnet:
 

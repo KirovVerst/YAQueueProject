@@ -102,6 +102,7 @@ def join_workers(manager_ip_address):
 
 
 if __name__ == "__main__":
+    """
     print("Creating manager ...")
     create_manager()
     print("Creating workers ...")
@@ -117,3 +118,6 @@ if __name__ == "__main__":
     print("Worker initialization ...")
     join_workers(manager_ip_address=manager.ip_address)
     print("hello")
+    """
+    images = client.get_all_images()
+    print(images[87].name)

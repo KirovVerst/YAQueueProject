@@ -108,5 +108,5 @@ conf.py
 /qproject/config.py
 
 static
-qproject_nginx
-/deploy/config.py
+utilts/qproject_nginx
+/config.py

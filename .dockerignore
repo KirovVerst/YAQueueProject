@@ -101,5 +101,5 @@ README.md
 LICENSE
 .gitignore
 docker-compose.yml
-/deploy/config.py
+/config.py
 /qproject/config.py
