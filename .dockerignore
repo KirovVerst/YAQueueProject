@@ -103,3 +103,5 @@ LICENSE
 docker-compose.yml
 /config.py
 /qproject/config.py
+/deploy_config.py
+/deploy_config_example.py
