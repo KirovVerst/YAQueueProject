@@ -10,31 +10,29 @@ services:
       - webnet
 
   gateway:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: gateway
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     networks:
       - webnet
     depends_on:
-      - "rabbit"
+      - rabbit
 
   flower:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: totem/celery-flower-docker
+    environment:
+      - AMQP_HOST=rabbit
+      - AMQP_ADMIN_HOST=rabbit
     deploy:
       placement:
         constraints: [node.role == manager]
-    command: celery flower -A qproject
     ports:
       - "5555:5555"
     networks:
       - webnet
     depends_on:
-      - "rabbit"
+      - rabbit
 
   visualizer:
     image: dockersamples/visualizer:stable
@@ -46,7 +44,7 @@ services:
       - webnet
 
   worker:
-    image: kirovverst/worker
+    image: worker
     deploy:
       replicas: 2
       restart_policy:
@@ -55,7 +53,7 @@ services:
     networks:
       - webnet
     depends_on:
-      - "rabbit"
+      - rabbit
 networks:
   webnet:
 
