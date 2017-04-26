@@ -70,7 +70,6 @@ def init():
 
 def deploy():
     droplet = get_droplet(ONE_DROPLET_NAME)
-
     run(commands['apt'])
     run(commands['nginx']['install'])
     run('rm /etc/nginx/sites-enabled/*')
@@ -84,6 +83,7 @@ def deploy():
     run(commands['nginx']['restart'])
     run('git clone https://github.com/KirovVerst/qproject.git')
     put('qproject/celery.py /root/qproject/qproject/celery.py')
-    put('docker-compose.yml', '~/docker-compose.yml')
+    run('docker build -t worker -f Dockerfile-worker .')
+    run('docker build -t gateway -f Dockerfile-gateway .')
     run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
     run('docker stack deploy -c docker-compose.yml qproject')

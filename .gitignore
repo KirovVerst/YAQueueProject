@@ -116,3 +116,4 @@ utilts/qproject_nginx
 /MailClient/MailClient/obj/Release
 /MailClient/MailClient/bin/Release
 /deploy_config.py
+qproject-nginx
