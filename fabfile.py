@@ -1,7 +1,9 @@
 import digitalocean
+import os
 from time import sleep
 from fabric.api import *
 from utilts.nginx_conf_generator import create_conf
+from qproject.settings import BASE_DIR
 
 try:
     from deploy_config import *
@@ -62,14 +64,16 @@ commands = {
 
 
 def init():
-    check_configuration()
-    droplet = create_droplet()
+    # check_configuration()
+    # droplet = create_droplet()
+    droplet = get_droplet(ONE_DROPLET_NAME)
     env.hosts = [droplet.ip_address]
     env.user = 'root'
 
 
 def deploy():
     droplet = get_droplet(ONE_DROPLET_NAME)
+    """
     run(commands['apt'])
     run(commands['nginx']['install'])
     run('rm /etc/nginx/sites-enabled/*')
@@ -82,8 +86,10 @@ def deploy():
     run('ln -s {} {}'.format(remote_config, remote_config_link))
     run(commands['nginx']['restart'])
     run('git clone https://github.com/KirovVerst/qproject.git')
-    put('qproject/celery.py /root/qproject/qproject/celery.py')
-    run('docker build -t worker -f Dockerfile-worker .')
-    run('docker build -t gateway -f Dockerfile-gateway .')
-    run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
-    run('docker stack deploy -c docker-compose.yml qproject')
+    """
+    put(os.path.join(BASE_DIR, 'qproject', 'config.py'), '/root/qproject/qproject/config.py')
+    with cd('~/qproject'):
+        run('docker build -t worker -f Dockerfile-worker .')
+        run('docker build -t gateway -f Dockerfile-gateway .')
+        run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
+        run('docker stack deploy -c docker-compose.yml qproject')
