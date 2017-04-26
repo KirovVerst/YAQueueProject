@@ -52,7 +52,7 @@ def get_droplet(droplet_name):
 
 
 commands = {
-    'apt': 'apt update && apt upgrade',
+    'apt': 'apt update',
     'nginx': {
         'install': 'apt install nginx',
         'restart': 'service nginx restart',
@@ -82,7 +82,8 @@ def deploy():
     put(local_config, remote_config)
     run('ln -s {} {}'.format(remote_config, remote_config_link))
     run(commands['nginx']['restart'])
-
+    run('git clone https://github.com/KirovVerst/qproject.git')
+    put('qproject/celery.py /root/qproject/qproject/celery.py')
     put('docker-compose.yml', '~/docker-compose.yml')
     run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
     run('docker stack deploy -c docker-compose.yml qproject')
