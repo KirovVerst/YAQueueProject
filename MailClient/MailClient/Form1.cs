@@ -37,23 +37,18 @@ namespace MailClient
         private async void button1_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string baseUrl = "kirov.verst.service@gmail.com";
-            string email_from, subject, text;
-            email_from = emailForm.Text;
-            subject = "Отзыв";
-            text = TextMessageForm.Text;
-
+            
             var values = new Dictionary<string, string>
                 {
-                   { "email_from", email_from },
-                   { "email_to", "kirov.verst.service@gmail.com" },
+                   { "email_from", emailForm.Text },
+                   { "email_to", emailTo.Text },
                    { "subject", "Отзыв" },
-                   { "text", text }
+                   { "text", TextMessageForm.Text }
                 };
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://207.154.238.238:80/api/api/mailgun/email/", content);
+            var response = await client.PostAsync("http://138.68.97.63:8000/api/mailgun/email/", content);
 
             var responseString = await response.Content.ReadAsStringAsync();
         }
@@ -61,6 +56,11 @@ namespace MailClient
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
 
         }
     }

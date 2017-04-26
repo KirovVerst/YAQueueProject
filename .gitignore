@@ -108,5 +108,9 @@ conf.py
 /qproject/config.py
 
 static
+
 qproject_nginx
 /deploy/config.py
+
+/MailClient/MailClient/obj/Release
+/MailClient/MailClient/bin/Release
