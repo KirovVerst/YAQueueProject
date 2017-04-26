@@ -34,11 +34,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.TextMessageForm = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.emailTo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // emailForm
             // 
-            this.emailForm.Location = new System.Drawing.Point(25, 80);
+            this.emailForm.Location = new System.Drawing.Point(25, 59);
             this.emailForm.Name = "emailForm";
             this.emailForm.Size = new System.Drawing.Size(250, 20);
             this.emailForm.TabIndex = 0;
@@ -46,7 +48,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 61);
+            this.label1.Location = new System.Drawing.Point(22, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 1;
@@ -92,11 +94,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(127, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Введите адрес сервера";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // emailTo
+            // 
+            this.emailTo.Location = new System.Drawing.Point(28, 103);
+            this.emailTo.Name = "emailTo";
+            this.emailTo.Size = new System.Drawing.Size(247, 20);
+            this.emailTo.TabIndex = 7;
+            this.emailTo.Text = "kirov.verst.service@gmail.com";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(556, 423);
+            this.Controls.Add(this.emailTo);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.TextMessageForm);
             this.Controls.Add(this.label3);
@@ -119,6 +141,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox TextMessageForm;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox emailTo;
     }
 }
 

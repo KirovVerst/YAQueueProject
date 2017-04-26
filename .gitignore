@@ -107,6 +107,12 @@ conf.py
 /qproject/mailgunconfig.py
 /qproject/config.py
 
-static
+/static
 utilts/qproject_nginx
 /config.py
+
+/deploy/config.py
+
+/MailClient/MailClient/obj/Release
+/MailClient/MailClient/bin/Release
+/deploy_config.py
