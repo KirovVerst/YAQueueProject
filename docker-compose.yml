@@ -6,25 +6,33 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - webnet
 
   gateway:
-    image: kirovverst/gateway
+    image: gateway
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/qproject
     ports:
       - "8000:8000"
+    networks:
+      - webnet
+    depends_on:
+      - rabbit
 
   flower:
-    image: kirovverst/gateway
-    volumes:
-      - .:/qproject
+    image: totem/celery-flower-docker
+    environment:
+      - AMQP_HOST=rabbit
+      - AMQP_ADMIN_HOST=rabbit
     deploy:
       placement:
         constraints: [node.role == manager]
-    command: celery flower -A qproject
     ports:
       - "5555:5555"
+    networks:
+      - webnet
+    depends_on:
+      - rabbit
 
   visualizer:
     image: dockersamples/visualizer:stable
@@ -32,14 +40,20 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - webnet
 
   worker:
-    image: kirovverst/worker
+    image: worker
     deploy:
-      replicas: 3
+      replicas: 2
       restart_policy:
         condition: on-failure
-    volumes:
-      - .:/qproject
-    command: celery worker -A qproject -l info
+    command: celery worker -A qproject -l info --autoscale=4,1
+    networks:
+      - webnet
+    depends_on:
+      - rabbit
+networks:
+  webnet:
 
