@@ -101,6 +101,5 @@ README.md
 LICENSE
 .gitignore
 docker-compose.yml
-/config.py
 /deploy_config.py
 /deploy_config_example.py

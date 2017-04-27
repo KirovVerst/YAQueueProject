@@ -1,0 +1,6 @@
+FROM kirovverst/ubuntu-python
+WORKDIR /home/user/worker
+COPY . /home/user/worker
+RUN virtualenv --python=python3 env
+RUN . env/bin/activate
+RUN pip3 install -r requirements/worker.txt

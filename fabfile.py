@@ -85,9 +85,10 @@ def deploy():
     put(local_config, remote_config)
     run('ln -s {} {}'.format(remote_config, remote_config_link))
     run(commands['nginx']['restart'])
-    run('git clone https://github.com/KirovVerst/qproject.git')
     """
-    put(os.path.join(BASE_DIR, 'qproject', 'config.py'), '/root/qproject/qproject/config.py')
+    run('rm -r ~/*')
+    run('git clone https://github.com/KirovVerst/qproject.git')
+    put(os.path.join(BASE_DIR, 'variables.env'), '/root/qproject/variables.env')
     with cd('~/qproject'):
         run('docker build -t worker -f Dockerfile-worker .')
         run('docker build -t gateway -f Dockerfile-gateway .')

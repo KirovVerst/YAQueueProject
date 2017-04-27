@@ -100,20 +100,14 @@ db.sqlite3
 
 .idea/
 
-conf.py
-/qproject/celeryconfig.py
-
 *.pid
-/qproject/mailgunconfig.py
-/qproject/config.py
 
 /static
 utilts/qproject_nginx
-/config.py
 
-/deploy/config.py
 
 /MailClient/MailClient/obj/Release
 /MailClient/MailClient/bin/Release
 /deploy_config.py
 qproject-nginx
+/variables.env
