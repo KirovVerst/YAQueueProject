@@ -1,4 +1,5 @@
 import os
+import requests
 
 MAILGUN_API_BASE_URL = os.getenv('MAILGUN_API_BASE_URL', '')
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY', '')
@@ -17,3 +18,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_ENABLE_UTC = True
+
+ip = requests.get('https://api.ipify.org/?format=json').json()['ip']
+ALLOWED_HOSTS = [ip]

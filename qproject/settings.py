@@ -122,7 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-try:
-    from qproject.config import *
-except ImportError:
-    from qproject.config_example import *
+from qproject.config import *
