@@ -90,7 +90,7 @@ def deploy():
     run('git clone https://github.com/KirovVerst/qproject.git')
     put(os.path.join(BASE_DIR, 'variables.env'), '/root/qproject/variables.env')
     with cd('~/qproject'):
-        run('docker build -t worker -f Dockerfile-worker .')
-        run('docker build -t gateway -f Dockerfile-gateway .')
+        run('docker build -t worker -f Dockerfile.worker .')
+        run('docker build -t gateway -f Dockerfile.gateway .')
         run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
         run('docker stack deploy -c docker-compose.yml qproject')
