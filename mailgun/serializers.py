@@ -12,7 +12,18 @@ class EmailSerializer(serializers.Serializer):
 states_list = [states.PENDING, states.SUCCESS, states.FAILURE]
 
 
-class TaskSerializer(serializers.Serializer):
+class EmailResultSerializer(serializers.Serializer):
     id = serializers.CharField()
     state = serializers.CharField(required=False, help_text=','.join(states_list))
     result = serializers.JSONField(allow_null=True, required=False, help_text='dictionary object actually: id, message')
+
+
+class StatsSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    count = serializers.IntegerField(required=False)
+
+
+class StatsResultSerializer(serializers.Serializer):
+    id = serializers.CharField()
+    state = serializers.CharField(required=False, help_text=','.join(states_list))
+    result = StatsSerializer(required=False)

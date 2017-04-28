@@ -1,7 +1,11 @@
 import digitalocean
 import os
 import subprocess
-from qproject.config import DO_TOKEN
+
+try:
+    from deploy_config import DO_TOKEN
+except:
+    from deploy_config_example import DO_TOKEN
 
 TAG = 'qproject'
 
@@ -117,7 +121,6 @@ if __name__ == "__main__":
     init_manager(manager_ip_address=manager.ip_address)
     print("Worker initialization ...")
     join_workers(manager_ip_address=manager.ip_address)
-    print("hello")
     """
     images = client.get_all_images()
     print(images[87].name)
