@@ -9,7 +9,13 @@ Distributed application based on Celery and RabbitMQ
 2. Celery 4
 3. RabbitMQ 3.6
 
-## Gateway installation and running
+## Gateway
+Gateway provides REST API for clients. It is based on [Django](https://www.djangoproject.com) and [Django Rest Framework](http://www.django-rest-framework.org)).
+You can build gateway container: 
+```
+$ docker build -t worker -f Dockerfile.worker .
+```
+Link to ready docker container: https://hub.docker.com/r/kirovverst/gateway/
 ```
 $ pip install -r requirements.txt
 $ python manage.py migrate
