@@ -111,3 +111,4 @@ utils/qproject_nginx
 /deploy_config.py
 qproject-nginx
 /variables.env
+/MailClient/.vs/
