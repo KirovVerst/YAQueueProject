@@ -11,7 +11,7 @@ Distributed mailing application based on Celery and RabbitMQ
 4. Docker
 
 ## Environment variables
-File `variables.example.env` consists environment variable templates that are needed to run QProject application. 
+File `variables.example.env` consists of environment variable templates that are needed to run QProject application. 
 1. Make sure that all of them are set in your local environment. It's required for running locally without not using docker containers.
 2. Create `variables.env`. It's required for deploying using docker.
 ```
