@@ -49,12 +49,19 @@ Deployed application has the following services:
 1. Gateway: `port 8000`
 2. Worker monitoring: `port 5555`
 3. Container monitoring: `port 8080`
-### On one Digital Ocean droplet
+### Configuration
 ```
-$ cp deploy_config.example.py deploy_config.py
+cp deploy_config.example.py deploy_config.py
+```
+### To one Digital Ocean droplet
+```
 $ fab init deploy
 ```
 Before deploying make sure that the size of droplet (in `deploy_config.py`) is more than 2 gb.
+### To local virtual machines based on VirualBox
+```
+$ fab local_swarm
+```
 ## Licensing
 
 The code in this project is licensed under MIT license.
