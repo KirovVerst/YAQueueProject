@@ -1,5 +1,6 @@
 import os
 import requests
+import socket
 
 MAILGUN_API_BASE_URL = os.getenv('MAILGUN_API_BASE_URL', '')
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY', '')
@@ -19,5 +20,6 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_ENABLE_UTC = True
 
-ip = requests.get('https://api.ipify.org/?format=json').json()['ip']
-ALLOWED_HOSTS = ['127.0.0.1', ip]
+outside_ip = requests.get('https://api.ipify.org/?format=json').json()['ip']
+local_ip = socket.gethostbyname(socket.gethostname())
+ALLOWED_HOSTS = ['127.0.0.1', outside_ip, local_ip]

@@ -88,3 +88,25 @@ def deploy():
     with cd('~/qproject'):
         run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
         run('docker stack deploy -c docker-compose.yml qproject')
+
+
+def local_swarm():
+    print('Creating manager ...')
+    local('docker-machine create --driver virtualbox qproject-manager')
+    print('Creaing workers ...')
+    for i in range(SWARM_WORKER_NUMBER):
+        local('docker-machine create --driver virtualbox qproject-worker-{0}'.format(i + 1))
+
+    ip_adrress = local('docker-machine ip qproject-manager', capture=True)
+    local('docker-machine ssh qproject-manager "docker swarm init --advertise-addr {}"'.format(ip_adrress))
+    token = local('docker-machine ssh qproject-manager "docker swarm join-token worker -q"', capture=True)
+    
+    for i in range(SWARM_WORKER_NUMBER):
+        local('docker-machine ssh qproject-worker-{} "docker swarm join --token {} {}:2377"'.format(
+            i + 1, token, ip_adrress
+        ))
+
+
+    local('docker-machine scp docker-compose.yml qproject-manager:~')
+    local('docker-machine scp variables.env qproject-manager:~')
+    local('docker-machine ssh qproject-manager "docker stack deploy -c docker-compose.yml qproject"')
