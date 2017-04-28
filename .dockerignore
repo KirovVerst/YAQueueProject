@@ -103,3 +103,4 @@ LICENSE
 docker-compose.yml
 /deploy_config.py
 /deploy_config_example.py
+/variables.env

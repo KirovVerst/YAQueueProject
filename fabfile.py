@@ -2,7 +2,7 @@ import digitalocean
 import os
 from time import sleep
 from fabric.api import *
-from utilts.nginx_conf_generator import create_conf
+from utils.nginx_conf_generator import create_conf
 from qproject.settings import BASE_DIR
 
 try:
@@ -64,16 +64,14 @@ commands = {
 
 
 def init():
-    # check_configuration()
-    # droplet = create_droplet()
-    droplet = get_droplet(ONE_DROPLET_NAME)
+    check_configuration()
+    droplet = create_droplet()
     env.hosts = [droplet.ip_address]
     env.user = 'root'
 
 
 def deploy():
     droplet = get_droplet(ONE_DROPLET_NAME)
-    """
     run(commands['apt'])
     run(commands['nginx']['install'])
     run('rm /etc/nginx/sites-enabled/*')
@@ -85,12 +83,8 @@ def deploy():
     put(local_config, remote_config)
     run('ln -s {} {}'.format(remote_config, remote_config_link))
     run(commands['nginx']['restart'])
-    """
-    run('rm -r ~/*')
     run('git clone https://github.com/KirovVerst/qproject.git')
     put(os.path.join(BASE_DIR, 'variables.env'), '/root/qproject/variables.env')
     with cd('~/qproject'):
-        run('docker build -t worker -f Dockerfile.worker .')
-        run('docker build -t gateway -f Dockerfile.gateway .')
         run('docker swarm init --advertise-addr={}'.format(droplet.ip_address))
         run('docker stack deploy -c docker-compose.yml qproject')

@@ -10,7 +10,7 @@ services:
       - webnet
 
   gateway:
-    image: gateway
+    image: kirovverst/gateway
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -46,7 +46,7 @@ services:
       - webnet
 
   worker:
-    image: worker
+    image: kirovverst/worker
     env_file:
       - variables.env
     deploy:

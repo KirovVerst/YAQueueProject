@@ -103,7 +103,7 @@ db.sqlite3
 *.pid
 
 /static
-utilts/qproject_nginx
+utils/qproject_nginx
 
 
 /MailClient/MailClient/obj/Release

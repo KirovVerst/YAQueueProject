@@ -20,4 +20,4 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_ENABLE_UTC = True
 
 ip = requests.get('https://api.ipify.org/?format=json').json()['ip']
-ALLOWED_HOSTS = [ip]
+ALLOWED_HOSTS = ['127.0.0.1', ip]
